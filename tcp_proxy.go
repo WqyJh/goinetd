@@ -14,7 +14,7 @@ type Proxy interface {
 
 type TcpProxy struct {
 	*Config
-	listener   *net.TCPListener
+	listener *net.TCPListener
 }
 
 var bufferSize = 16 * 1024

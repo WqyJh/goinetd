@@ -9,9 +9,9 @@ import (
 )
 
 var (
-	help bool
+	help    bool
 	version bool
-	conf string
+	conf    string
 )
 
 func parseArgs() {

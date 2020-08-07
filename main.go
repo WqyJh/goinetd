@@ -1,11 +1,37 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
 )
+
+var (
+	help bool
+	version bool
+	conf string
+)
+
+func parseArgs() {
+	flag.BoolVar(&help, "h", false, "show this help")
+	flag.BoolVar(&version, "version", false, "show version")
+	flag.StringVar(&conf, "c", "/etc/goinetd.conf", "config file path")
+	flag.Parse()
+}
+
+func init() {
+	parseArgs()
+	if help {
+		flag.Usage()
+		os.Exit(0)
+	}
+	if version {
+		fmt.Println("0.1.0")
+		os.Exit(0)
+	}
+}
 
 func main() {
 	sigs := make(chan os.Signal, 1)
@@ -20,7 +46,7 @@ func main() {
 		done <- true
 	}()
 
-	configs, err := ParseConfig("goinetd.conf")
+	configs, err := ParseConfig(conf)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(-1)

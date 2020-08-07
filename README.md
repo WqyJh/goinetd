@@ -41,4 +41,4 @@ goinetd -c goinetd.conf
 - [ ] Rinetd compatibility (Optional)
 - [ ] Service/Systemd Support
 - [ ] Binary releases
-
+- [ ] Hot Reloading
